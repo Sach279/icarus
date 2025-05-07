@@ -1,0 +1,170 @@
+<?xml version="1.0" ?>
+<robot name="CubeRover">
+
+    <!-- Structure -->
+    <link name="structure">
+        <visual>
+            <geometry>
+                <mesh filename="CubeRover_structure.stl" scale="1 1 1"/>
+            </geometry>
+            <material name="dark_grey">
+                <color rgba="0.6 0.6 0.6 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="CubeRover_structure.stl" scale="1 1 1"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="2.0"/>
+            <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </inertial>
+    </link>
+
+    <!-- Shell -->
+    <link name="shell_link">
+        <visual>
+            <geometry>
+                <mesh filename="CubeRover_shell.stl" scale="1 1 1"/>
+            </geometry>
+            <material name="white">
+                <color rgba="0.9 0.9 0.9 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="CubeRover_shell.stl" scale="1 1 1"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.05"/>
+            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </inertial>
+    </link>
+
+    <!-- Fixed Joint between Shell and Structure -->
+    <joint name="shell_to_structure" type="fixed">
+        <parent link="structure"/>
+        <child link="shell_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Wheel Links -->
+    <link name="wheel_FR">
+        <visual>
+            <geometry>
+                <mesh filename="CubeRover_wheel.stl" scale="1 1 1"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0.3 0.3 0.3 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="CubeRover_wheel.stl" scale="1 1 1"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.05"/>
+            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+        </inertial>
+    </link>
+
+    <link name="wheel_FL">
+        <visual>
+            <geometry>
+                <mesh filename="CubeRover_wheel.stl" scale="1 1 1"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0.3 0.3 0.3 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="CubeRover_wheel.stl" scale="1 1 1"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.05"/>
+            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+        </inertial>
+    </link>
+
+    <link name="wheel_RR">
+        <visual>
+            <geometry>
+                <mesh filename="CubeRover_wheel.stl" scale="1 1 1"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0.3 0.3 0.3 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="CubeRover_wheel.stl" scale="1 1 1"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.05"/>
+            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+        </inertial>
+    </link>
+
+    <link name="wheel_RL">
+        <visual>
+            <geometry>
+                <mesh filename="CubeRover_wheel.stl" scale="1 1 1"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0.3 0.3 0.3 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="CubeRover_wheel.stl" scale="1 1 1"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.05"/>
+            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+        </inertial>
+    </link>
+
+    <!-- Joints to Attach Wheels to Structure with Free Rotation on Y-axis -->
+
+    <!-- Front Right Wheel -->
+    <joint name="wheel_FR_joint" type="continuous">
+        <parent link="structure"/>
+        <child link="wheel_FR"/>
+        <origin xyz="0.0748377 -0.0592909 -0.021166" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- Front Left Wheel -->
+    <joint name="wheel_FL_joint" type="continuous">
+        <parent link="structure"/>
+        <child link="wheel_FL"/>
+        <origin xyz="0.074838 0.0606734 -0.0211625" rpy="0 0 3.14159"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- Rear Right Wheel -->
+    <joint name="wheel_RR_joint" type="continuous">
+        <parent link="structure"/>
+        <child link="wheel_RR"/>
+        <origin xyz="-0.0696313 -0.0592909 -0.021166" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- Rear Left Wheel -->
+    <joint name="wheel_RL_joint" type="continuous">
+        <parent link="structure"/>
+        <child link="wheel_RL"/>
+        <origin xyz="-0.069631 0.0606734 -0.0211625" rpy="0 0 3.14159"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+</robot>
